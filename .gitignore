@@ -1,0 +1,25 @@
+# IDE (WebStorm/IntelliJ)
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+
+# Optional: temp
+.tmp/
+temp/
