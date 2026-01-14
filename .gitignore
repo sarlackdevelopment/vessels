@@ -23,3 +23,5 @@ coverage/
 # Optional: temp
 .tmp/
 temp/
+
+backend/.env
