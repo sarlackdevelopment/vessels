@@ -1,0 +1,53 @@
+import org.gradle.authentication.http.BasicAuthentication
+
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    google()
+    mavenCentral()
+
+    maven {
+      url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+      credentials {
+        username = "mapbox"
+        password = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN").get()
+      }
+      authentication {
+        basic(BasicAuthentication)
+      }
+    }
+  }
+
+  includeBuild("../node_modules/@react-native/gradle-plugin")
+}
+
+plugins {
+  id("com.facebook.react.settings")
+}
+
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+  repositories {
+    google()
+    mavenCentral()
+
+    maven {
+      url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+      credentials {
+        username = "mapbox"
+        password = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN").get()
+      }
+      authentication {
+        basic(BasicAuthentication)
+      }
+    }
+  }
+}
+
+extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
+  ex.autolinkLibrariesFromCommand()
+}
+
+rootProject.name = "mobile"
+include(":app")
+includeBuild("../node_modules/@react-native/gradle-plugin")
