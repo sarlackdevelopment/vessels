@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Vessel {
+  mmsi        BigInt                  @id
+  geom        Unsupported("geometry")
+  cog         Float?
+  sog         Float?
+  trueHeading Int?                    @map("true_heading")
+  updatedAt   DateTime                @map("updated_at")
+
+  @@index([updatedAt], map: "idx_vessels_updated_at")
+  @@map("vessels")
+}
